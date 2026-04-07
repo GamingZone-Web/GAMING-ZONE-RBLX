@@ -1,0 +1,111 @@
+* {
+    margin: 2;
+    padding: 2;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    box-shadow: 0 2px 5x rgba(0, 0, 0, 0.1); 
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+.titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(77, 178, 178);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: aqua;
+    font-weight: 600;
+}
+
+body {
+
+    padding-top: 2rem;
+    min-height: 100vh;
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/imagen1.jpeg');
+    background-size: cover;
+    background-position: center ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+}
+
+#hero h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.logo{
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: rgb(78, 151, 255);
+}
+
+.cta-button {
+    background-color: rgb(77, 255, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 1rem 3rem;
+    font-family: 'arial', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: antiquewhite;
+}
+
+#FF {
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#FF h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+
+}
+
+.ff-gridd {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 6rem;
+}
+
+.robux-chess {
+    background: rgb(36, 147, 231);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.robux-chess img {
+    width: 100%;
+    object-fit: cover;
+}
+
+}
+#FF p {
+    color: black;
+
+}
