@@ -622,7 +622,187 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
-/* ─── 11. SCROLLBAR PERSONALIZADA ────────────────── */
+/* ─── 11. SEARCH BAR ─────────────────────────────── */
+.gz-search-section {
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  padding: 2rem 0 2.25rem;
+  position: relative;
+}
+.gz-search-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-ff-glow), var(--c-rbx-glow), transparent);
+  pointer-events: none;
+}
+.gz-search-wrapper {
+  max-width: 640px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.gz-search-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+.gz-search-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--c-surface-2);
+  border: 1.5px solid var(--c-border);
+  border-radius: 999px;
+  padding: 5px 5px 5px 20px;
+  gap: 0;
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.gz-search-bar:focus-within {
+  border-color: var(--c-ff);
+  box-shadow: 0 0 0 3px var(--c-ff-glow), 0 4px 28px rgba(0,0,0,0.4);
+}
+.gz-search-icon {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  color: var(--c-ff);
+  opacity: 0.9;
+  pointer-events: none;
+}
+.gz-search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--c-text);
+  padding: 10px 14px;
+  min-width: 0;
+  caret-color: var(--c-ff);
+}
+.gz-search-input::placeholder {
+  color: var(--c-text-muted);
+  opacity: 0.7;
+}
+.gz-search-clear {
+  display: none;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--c-border);
+  color: var(--c-text-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: background var(--ease), color var(--ease);
+  margin-right: 4px;
+}
+.gz-search-clear:hover { background: var(--c-surface); color: var(--c-text); }
+.gz-search-clear.visible { display: flex; align-items: center; justify-content: center; }
+.gz-search-btn {
+  flex-shrink: 0;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--c-ff), #c0392b);
+  border-radius: 999px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity var(--ease), transform var(--ease), box-shadow var(--ease);
+  box-shadow: 0 2px 14px var(--c-ff-glow);
+  white-space: nowrap;
+}
+.gz-search-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(255,75,43,0.45);
+}
+.gz-search-btn:active { transform: scale(0.97); }
+
+/* Chips de filtro */
+.gz-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.gz-chip {
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--c-border);
+  background: transparent;
+  color: var(--c-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all var(--ease);
+}
+.gz-chip:hover {
+  border-color: rgba(255,75,43,0.4);
+  color: var(--c-text);
+  background: rgba(255,75,43,0.06);
+}
+.gz-chip[data-active="true"][data-filter="free-fire"],
+.gz-chip[data-active="true"][data-filter="seguridad"],
+.gz-chip[data-active="true"][data-filter="comparativa"] {
+  border-color: var(--c-ff);
+  color: #ff7b62;
+  background: var(--c-ff-glow);
+}
+.gz-chip[data-active="true"][data-filter="roblox"] {
+  border-color: var(--c-rbx);
+  color: var(--c-rbx);
+  background: var(--c-rbx-glow);
+}
+.gz-chip[data-active="true"][data-filter="all"] {
+  border-color: var(--c-ff);
+  color: #ff7b62;
+  background: var(--c-ff-glow);
+}
+
+/* Contador resultados */
+.gz-result-info {
+  font-size: 0.78rem;
+  color: var(--c-text-muted);
+  min-height: 1.1em;
+  text-align: center;
+  transition: color var(--ease);
+}
+.gz-result-info strong { color: var(--c-ff); }
+
+/* Sin resultados */
+.gz-empty {
+  display: none;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--c-text-muted);
+}
+.gz-empty.visible { display: block; }
+.gz-empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.gz-empty p { font-size: 0.9rem; line-height: 1.6; }
+.gz-empty strong { color: var(--c-ff); }
+
+/* Ocultar tarjetas filtradas */
+.article-card.gz-hidden { display: none; }
+
+@media (max-width: 500px) {
+  .gz-search-bar { padding: 4px 4px 4px 14px; }
+  .gz-search-btn { padding: 9px 16px; font-size: 0.68rem; }
+  .gz-search-input { font-size: 0.88rem; }
+}
+
+/* ─── 12. SCROLLBAR PERSONALIZADA ────────────────── */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--c-bg); }
 ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
