@@ -370,15 +370,75 @@
     }
   </style>
   <script>
-    (function(){
-      var K='cookieConsent',D=30;
-      function ok(){var s=localStorage.getItem(K);if(!s)return false;try{return(Date.now()-JSON.parse(s).ts)<D*864e5;}catch(e){return false;}}
-      function hide(){var b=document.getElementById('cookieBanner');if(b){b.style.transform='translateY(100%)';b.style.opacity='0';setTimeout(function(){b.style.display='none';},360);}}
-      function save(t){localStorage.setItem(K,JSON.stringify({type:t,ts:Date.now()}));}
-      if(ok()){hide();return;}
-      document.getElementById('cookieAccept').onclick=function(){save('all');hide();};
-      document.getElementById('cookieEssential').onclick=function(){save('essential');hide();};
-    })();
+    /* ── Cookie Banner v2 – GamingZone ──────────────────────────────
+       FIX 1: Todo el código corre dentro de DOMContentLoaded,
+               garantizando que los elementos ya existen en el DOM.
+       FIX 2: Si ya hay consentimiento válido, el banner se oculta
+               con display:none de forma INMEDIATA (sin parpadeo).
+       FIX 3: Los onclick solo se asignan si el elemento existe,
+               evitando TypeError en consola.
+    ─────────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+      var STORAGE_KEY  = 'cookieConsent';
+      var DAYS_VALID   = 30;
+      var MS_PER_DAY   = 86400000;
+
+      /* ── Helpers ── */
+      function hasValidConsent() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return false;
+          var data = JSON.parse(raw);
+          return (Date.now() - data.ts) < (DAYS_VALID * MS_PER_DAY);
+        } catch (e) {
+          return false;   // JSON corrupto → tratar como sin consentimiento
+        }
+      }
+
+      function saveConsent(type) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ type: type, ts: Date.now() }));
+        } catch (e) { /* localStorage bloqueado (modo privado estricto) */ }
+      }
+
+      function hideBanner(animate) {
+        var banner = document.getElementById('cookieBanner');
+        if (!banner) return;
+        if (animate) {
+          banner.style.transition = 'transform .35s ease, opacity .35s ease';
+          banner.style.transform  = 'translateY(100%)';
+          banner.style.opacity    = '0';
+          setTimeout(function () { banner.style.display = 'none'; }, 360);
+        } else {
+          /* Ocultar instantáneo: evita el parpadeo en visitas recurrentes */
+          banner.style.display = 'none';
+        }
+      }
+
+      /* ── Lógica principal ── */
+      if (hasValidConsent()) {
+        hideBanner(false);   // ya aceptó → ocultar sin animación
+        return;
+      }
+
+      /* Asignar eventos solo si los botones existen en el DOM */
+      var btnAccept    = document.getElementById('cookieAccept');
+      var btnEssential = document.getElementById('cookieEssential');
+
+      if (btnAccept) {
+        btnAccept.addEventListener('click', function () {
+          saveConsent('all');
+          hideBanner(true);
+        });
+      }
+
+      if (btnEssential) {
+        btnEssential.addEventListener('click', function () {
+          saveConsent('essential');
+          hideBanner(true);
+        });
+      }
+    });
   </script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
 
