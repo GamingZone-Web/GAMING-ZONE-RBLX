@@ -36,8 +36,6 @@
           <li><a href="index.html">Inicio</a></li>
           <li><a href="codigos-free-fire-abril-2026.html">Códigos FF</a></li>
           <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="eventos.html" aria-current="page">Eventos</a></li>
-          <li><a href="seguridad.html">Seguridad</a></li>
         </ul>
       </nav>
     </div>
@@ -50,7 +48,6 @@
         <nav class="breadcrumb" aria-label="Ruta de navegación">
           <ol>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="eventos.html">Eventos</a></li>
             <li aria-current="page">Evento de Colaboración 2026</li>
           </ol>
         </nav>
@@ -236,8 +233,6 @@
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
             <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
-            <li><a href="eventos.html"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">17</span></a></li>
-            <li><a href="seguridad.html"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">12</span></a></li>
             <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
           </ul>
         </div>
@@ -245,7 +240,7 @@
           <p class="cta-icon">🚀</p>
           <h2 class="widget-title">¿No quieres perder ningún código?</h2>
           <p>Activa las notificaciones y recibe los nuevos códigos de canje al instante.</p>
-          <a href="#" class="btn btn--primary btn--full">Activar notificaciones</a>
+          <a href="#" class="btn btn--primary btn--full" id="btn-alertas">Activar notificaciones</a>
         </div>
       </aside>
 
@@ -259,7 +254,7 @@
         <p>Tu fuente de información actualizada sobre Free Fire y Roblox. Contenido creado por jugadores, para jugadores.</p>
       </div>
       <nav class="footer-nav" aria-label="Legal"><h3>Legal &amp; Info</h3><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="politica-de-privacidad.html">Política de Privacidad</a></li><li><a href="politica-de-cookies.html">Política de Cookies</a></li><li><a href="aviso-legal.html">Aviso Legal</a></li></ul></nav>
-      <nav class="footer-nav" aria-label="Secciones"><h3>Secciones</h3><ul><li><a href="codigos-free-fire-abril-2026.html">Códigos Free Fire</a></li><li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="seguridad.html">Seguridad</a></li><li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html">Comparativas</a></li></ul></nav>
+      <nav class="footer-nav" aria-label="Secciones"><h3>Secciones</h3><ul><li><a href="codigos-free-fire-abril-2026.html">Códigos Free Fire</a></li><li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li><li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html">Comparativas</a></li></ul></nav>
     </div>
     <div class="footer-bottom"><div class="container footer-bottom-inner"><p>&copy; 2026 GamingZone. Todos los derechos reservados. Este sitio no está afiliado con Garena, Roblox Corporation ni ninguna empresa relacionada.</p></div></div>
   </footer>
@@ -382,5 +377,65 @@
   </script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
 
+
+  <!-- ===== SCRIPT NOTIFICACIONES - GamingZone ===== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var btn = document.getElementById("btn-alertas");
+      if (!btn) return;
+
+      if (typeof Notification !== "undefined" && Notification.permission === "granted") {
+        setActivo();
+      }
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (!("Notification" in window)) {
+          mostrarFeedback("Tu navegador no soporta notificaciones. Prueba Chrome o Firefox.", "error");
+          return;
+        }
+        if (Notification.permission === "granted") { enviarNotificacion(); return; }
+        if (Notification.permission === "denied") {
+          mostrarFeedback("Notificaciones bloqueadas. Activaias desde los ajustes de tu navegador.", "error");
+          return;
+        }
+        Notification.requestPermission().then(function (r) {
+          if (r === "granted") {
+            console.log("[GamingZone] Notificaciones activadas.");
+            setActivo(); enviarNotificacion();
+          } else {
+            console.warn("[GamingZone] Permiso denegado.");
+            mostrarFeedback("No activaste las alertas. Puedes hacerlo cuando quieras.", "error");
+          }
+        });
+      });
+
+      function enviarNotificacion() {
+        new Notification("GamingZone te avisa!", {
+          body: "Recibiras codigos y novedades al instante. Gracias!",
+          icon: "img/favicon.png"
+        });
+      }
+      function setActivo() {
+        btn.textContent = "Alertas activas";
+        btn.style.opacity = "0.65";
+        btn.style.cursor = "default";
+        btn.style.pointerEvents = "none";
+      }
+      function mostrarFeedback(texto, tipo) {
+        var fb = document.getElementById("alertas-feedback");
+        if (!fb) {
+          fb = document.createElement("p");
+          fb.id = "alertas-feedback";
+          fb.style.cssText = "margin-top:10px;font-size:12px;font-family:Exo 2,sans-serif;border-radius:6px;padding:8px 12px;text-align:center;";
+          btn.parentNode.insertBefore(fb, btn.nextSibling);
+        }
+        fb.textContent      = texto;
+        fb.style.color      = tipo === "error" ? "#ff4b2b" : "#4bffb5";
+        fb.style.background = tipo === "error" ? "rgba(255,75,43,.10)" : "rgba(75,255,181,.10)";
+      }
+    });
+  </script>
+  <!-- ===== FIN SCRIPT NOTIFICACIONES ===== -->
 </body>
 </html>
