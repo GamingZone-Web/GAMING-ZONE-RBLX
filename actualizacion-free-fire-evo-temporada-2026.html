@@ -36,8 +36,6 @@
           <li><a href="index.html">Inicio</a></li>
           <li><a href="codigos-free-fire-abril-2026.html">Códigos FF</a></li>
           <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="eventos.html">Eventos</a></li>
-          <li><a href="seguridad.html">Seguridad</a></li>
         </ul>
       </nav>
     </div>
@@ -258,8 +256,7 @@
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
             <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
-            <li><a href="eventos.html"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">17</span></a></li>
-            <li><a href="seguridad.html"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">12</span></a></li>
+
             <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
           </ul>
         </div>
@@ -267,7 +264,7 @@
           <p class="cta-icon">🚀</p>
           <h2 class="widget-title">¿No quieres perder ningún código?</h2>
           <p>Activa las notificaciones y recibe los nuevos códigos de canje al instante.</p>
-          <a href="#" class="btn btn--primary btn--full">Activar notificaciones</a>
+          <button id="btnNotificaciones" class="btn btn--primary btn--full" type="button">🔔 Activar notificaciones</button>
         </div>
       </aside>
 
@@ -295,8 +292,6 @@
         <ul>
           <li><a href="codigos-free-fire-abril-2026.html">Códigos Free Fire</a></li>
           <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="eventos.html">Eventos</a></li>
-          <li><a href="seguridad.html">Seguridad</a></li>
           <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html">Comparativas</a></li>
         </ul>
       </nav>
@@ -428,6 +423,83 @@
     }); /* fin DOMContentLoaded */
   </script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
+
+  <!-- ===== NOTIFICACIONES PUSH – GamingZone ===== -->
+  <script>
+  (function () {
+    var btn = document.getElementById('btnNotificaciones');
+    if (!btn) return;
+
+    /* ── Estilos de estado ─────────────────────────────────────── */
+    var ESTADOS = {
+      default:   { texto: '🔔 Activar notificaciones', disabled: false },
+      activadas: { texto: '✅ Notificaciones activadas', disabled: true  },
+      denegadas: { texto: '🚫 Permiso denegado',        disabled: true  },
+      noSoporte: { texto: '⚠️ No soportado aquí',       disabled: true  }
+    };
+
+    function aplicarEstado(clave) {
+      var e = ESTADOS[clave];
+      btn.textContent = e.texto;
+      btn.disabled    = e.disabled;
+      btn.style.opacity = e.disabled ? '0.75' : '1';
+      btn.style.cursor  = e.disabled ? 'not-allowed' : 'pointer';
+    }
+
+    /* ── Comprobar soporte ─────────────────────────────────────── */
+    if (!('Notification' in window)) {
+      aplicarEstado('noSoporte');
+      return;
+    }
+
+    /* ── Restaurar estado previo si ya existe permiso ──────────── */
+    if (Notification.permission === 'granted') {
+      aplicarEstado('activadas');
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      aplicarEstado('denegadas');
+      return;
+    }
+
+    /* ── Click: pedir permiso ──────────────────────────────────── */
+    btn.addEventListener('click', function () {
+      btn.textContent = '⏳ Esperando permiso…';
+      btn.disabled    = true;
+
+      Notification.requestPermission().then(function (permiso) {
+        if (permiso === 'granted') {
+          aplicarEstado('activadas');
+
+          /* Notificación de bienvenida inmediata */
+          var notif = new Notification('¡GamingZone activado! 🎮', {
+            body: 'Te avisaremos al instante de nuevos códigos y actualizaciones de Free Fire.',
+            icon: 'img/favicon.png',
+            badge: 'img/favicon.png',
+            tag:  'gamingzone-bienvenida'
+          });
+
+          /* Guardar preferencia en localStorage */
+          try {
+            localStorage.setItem('gz_notif', JSON.stringify({ ts: Date.now() }));
+          } catch (e) {}
+
+          /* Cerrar la notificación de bienvenida tras 6 s */
+          setTimeout(function () { notif.close(); }, 6000);
+
+        } else if (permiso === 'denied') {
+          aplicarEstado('denegadas');
+        } else {
+          /* 'default' = el usuario cerró el diálogo sin elegir */
+          aplicarEstado('default');
+        }
+      }).catch(function () {
+        aplicarEstado('default');
+      });
+    });
+  })();
+  </script>
+  <!-- ===== FIN NOTIFICACIONES PUSH ===== -->
 
 </body>
 </html>
