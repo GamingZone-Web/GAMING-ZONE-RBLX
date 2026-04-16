@@ -78,7 +78,6 @@
         <span class="gz-search-eyebrow">Buscar artículo</span>
 
         <div class="gz-search-bar" role="search">
-          <!-- Icono lupa -->
           <svg class="gz-search-icon" xmlns="http://www.w3.org/2000/svg"
                viewBox="0 0 24 24" fill="none" stroke="currentColor"
                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
@@ -109,7 +108,6 @@
             aria-label="Buscar">Buscar</button>
         </div>
 
-        <!-- Filtros rápidos por categoría -->
         <div class="gz-filter-row" role="group" aria-label="Filtrar por categoría">
           <button class="gz-chip" data-filter="all"         data-active="true"  onclick="gzSetFilter('all', this)">🎮 Todos</button>
           <button class="gz-chip" data-filter="free-fire"   data-active="false" onclick="gzSetFilter('free-fire', this)">🔴 Free Fire</button>
@@ -117,7 +115,6 @@
           <button class="gz-chip" data-filter="comparativa" data-active="false" onclick="gzSetFilter('comparativa', this)">⚔️ Comparativas</button>
         </div>
 
-        <!-- Contador de resultados -->
         <p class="gz-result-info" id="gz-result-info" aria-live="polite"></p>
 
       </div>
@@ -206,7 +203,37 @@
             </div>
           </a>
 
+          <!-- ── TARJETA NUEVA: Seguridad Free Fire ── -->
+          <a href="como-proteger-cuenta-free-fire-hackers-2026.html" class="article-card" data-category="free-fire" aria-label="Leer artículo: Cómo proteger tu cuenta de Free Fire de hackers">
+            <div class="card-image-wrap">
+              <img src="img/imagen6.1.jpeg" alt="Pantalla de configuración de seguridad de una cuenta de Free Fire con el menú de verificación en dos pasos visible" width="400" height="225" loading="lazy" />
+              <span class="card-badge card-badge--ff">🔴 Free Fire</span>
+            </div>
+            <div class="card-body">
+              <h3>Cómo Proteger tu Cuenta de Free Fire de Hackers y Robos en 2026: Guía de Seguridad Completa</h3>
+              <p class="card-excerpt">Activa el 2FA, evita APKs falsas y aprende a reconocer el phishing. Todo lo que necesitas para que tu cuenta de Free Fire sea prácticamente imposible de hackear.</p>
+              <div class="card-meta">
+                <time datetime="2026-03-10">10 Marzo 2026</time>
+                <span class="read-time">⏱ 9 min de lectura</span>
+              </div>
+            </div>
+          </a>
 
+          <!-- ── TARJETA NUEVA: Controles Parentales Roblox ── -->
+          <a href="roblox-parental-controls-guia-padres-2026.html" class="article-card" data-category="roblox" aria-label="Leer artículo: Guía para padres: controles parentales de Roblox 2026">
+            <div class="card-image-wrap">
+              <img src="img/imagen11.jpeg" alt="Panel de controles parentales de Roblox visto desde un dispositivo de escritorio en 2026" width="400" height="225" loading="lazy" />
+              <span class="card-badge card-badge--rbx">🔵 Roblox</span>
+            </div>
+            <div class="card-body">
+              <h3>Guía para Padres: Controles Parentales de Roblox en 2026 y Cómo Configurar un Entorno Seguro</h3>
+              <p class="card-excerpt">Configura los controles parentales de Roblox paso a paso: modo restringido, límites de gasto, supervisión del chat y más. Actualizado para 2026.</p>
+              <div class="card-meta">
+                <time datetime="2026-03-05">5 Marzo 2026</time>
+                <span class="read-time">⏱ 6 min de lectura</span>
+              </div>
+            </div>
+          </a>
 
           <a href="evento-colaboracion-free-fire-2026-recompensas.html" class="article-card" data-category="free-fire" aria-label="Leer artículo: Evento de colaboración de Free Fire 2026">
             <div class="card-image-wrap">
@@ -400,14 +427,12 @@
           }
         });
 
-        /* Botón limpiar */
         if (query) {
           clearBtn.classList.add('visible');
         } else {
           clearBtn.classList.remove('visible');
         }
 
-        /* Contador y mensaje vacío */
         if (query !== '' || activeFilter !== 'all') {
           counter.innerHTML = visible > 0
             ? '<strong>' + visible + '</strong> artículo' + (visible !== 1 ? 's' : '') + ' encontrado' + (visible !== 1 ? 's' : '')
@@ -424,11 +449,9 @@
         }
       }
 
-      /* Botón buscar */
       var searchBtn = document.getElementById('gz-search-btn');
       if (searchBtn) searchBtn.addEventListener('click', filter);
 
-      /* Botón limpiar */
       if (clearBtn) {
         clearBtn.addEventListener('click', function () {
           input.value = '';
@@ -437,7 +460,6 @@
         });
       }
 
-      /* Chips de filtro – función global */
       window.gzSetFilter = function (cat, chipEl) {
         activeFilter = cat;
         document.querySelectorAll('.gz-chip').forEach(function (c) {
@@ -487,13 +509,6 @@
   </style>
 
   <script>
-    /* ── Cookie Banner v3 – GamingZone ──────────────────────────────
-       FIX 1: DOMContentLoaded garantiza que el DOM esté listo.
-       FIX 2: Condición de página: solo visible en "/" o "index.html".
-               En cualquier otra ruta → display:none inmediato.
-       FIX 3: localStorage 30 días. Aceptado en Home = no vuelve.
-       FIX 4: addEventListener solo si el botón existe en el DOM.
-    ─────────────────────────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', function () {
 
       var STORAGE_KEY = 'cookieConsent';
@@ -501,7 +516,6 @@
       var MS_PER_DAY  = 86400000;
       var banner      = document.getElementById('cookieBanner');
 
-      /* ── FIX 2: ¿Estamos en la página principal? ── */
       function isHomePage() {
         var path = window.location.pathname;
         return (
@@ -512,13 +526,11 @@
         );
       }
 
-      /* Si NO es la Home → ocultar y salir sin ejecutar nada más */
       if (!isHomePage()) {
         if (banner) banner.style.display = 'none';
         return;
       }
 
-      /* ── FIX 3: Lógica de persistencia ── */
       function hasValidConsent() {
         try {
           var raw = localStorage.getItem(STORAGE_KEY);
@@ -526,7 +538,7 @@
           var data = JSON.parse(raw);
           return (Date.now() - data.ts) < (DAYS_VALID * MS_PER_DAY);
         } catch (e) {
-          return false; /* JSON corrupto → mostrar banner */
+          return false;
         }
       }
 
@@ -536,10 +548,9 @@
             STORAGE_KEY,
             JSON.stringify({ type: type, ts: Date.now() })
           );
-        } catch (e) { /* localStorage bloqueado en modo privado */ }
+        } catch (e) { }
       }
 
-      /* ── Ocultar: instantáneo (visita recurrente) o animado (clic) ── */
       function hideBanner(animate) {
         if (!banner) return;
         if (animate) {
@@ -548,17 +559,15 @@
           banner.style.opacity    = '0';
           setTimeout(function () { banner.style.display = 'none'; }, 360);
         } else {
-          banner.style.display = 'none'; /* Sin parpadeo en recurrentes */
+          banner.style.display = 'none';
         }
       }
 
-      /* ── Flujo principal (solo si es la Home) ── */
       if (hasValidConsent()) {
         hideBanner(false);
         return;
       }
 
-      /* ── FIX 4: Eventos solo si los botones existen ── */
       var btnAccept    = document.getElementById('cookieAccept');
       var btnEssential = document.getElementById('cookieEssential');
 
@@ -576,10 +585,9 @@
         });
       }
 
-    }); /* fin DOMContentLoaded */
+    });
   </script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
-
 
   <!-- ===== SCRIPT NOTIFICACIONES – GamingZone ===== -->
   <script>
@@ -588,7 +596,6 @@
       var btn = document.getElementById('btn-alertas');
       if (!btn) return;
 
-      /* Estado inicial: permiso ya concedido en visita anterior */
       if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
         setActivo();
       }
@@ -596,38 +603,30 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        /* Caso 1: navegador sin soporte (IE, algunos WebView) */
         if (!('Notification' in window)) {
           mostrarFeedback('Su navegador no soporta notificaciones. Prueba Chrome o Firefox.', 'error');
           return;
         }
 
-        /* Caso 2: permiso ya concedido -> notificacion directa */
         if (Notification.permission === 'granted') {
           enviarNotificacion();
           return;
         }
 
-        /* Caso 3: bloqueado por el usuario -> no podemos pedir de nuevo */
         if (Notification.permission === 'denied') {
           mostrarFeedback('Las notificaciones estan bloqueadas. Activaias en los ajustes de tu navegador.', 'error');
           return;
         }
 
-        /* Caso 4: sin decidir -> pedir permiso */
         Notification.requestPermission().then(function (resultado) {
           if (resultado === 'granted') {
-            console.log('[GamingZone] Notificaciones activadas correctamente.');
             setActivo();
             enviarNotificacion();
           } else {
-            console.warn('[GamingZone] El usuario denego las notificaciones.');
             mostrarFeedback('No activaste las alertas. Puedes hacerlo cuando quieras desde los ajustes.', 'error');
           }
         });
       });
-
-      /* Helpers */
 
       function enviarNotificacion() {
         new Notification('GamingZone te avisa!', {
