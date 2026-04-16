@@ -347,101 +347,29 @@
     }
   </style>
   <script>
-    /* ── Cookie Banner v3 – GamingZone ──────────────────────────────
-       FIX 1: DOMContentLoaded garantiza que el DOM esté listo.
-       FIX 2: Condición de página: el banner solo se muestra en
-               la raíz "/" o en "index.html". En cualquier otra
-               ruta se oculta de inmediato con display:none.
-       FIX 3: localStorage con expiración de 30 días. Si el usuario
-               ya aceptó en la Home, no vuelve a ver el banner.
-       FIX 4: Los listeners se asignan solo si los botones existen,
-               eliminando cualquier TypeError en consola.
-    ─────────────────────────────────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', function () {
+  // Menú Hamburguesa
+  (function(){
+    var t=document.querySelector('.nav-toggle'), n=document.querySelector('.main-nav');
+    if(!t||!n) return;
+    t.addEventListener('click', function(){
+      var e=this.getAttribute('aria-expanded')==='true';
+      this.setAttribute('aria-expanded',String(!e));
+      n.classList.toggle('is-open'); t.classList.toggle('is-active');
+    });
+  })();
 
-      var STORAGE_KEY = 'cookieConsent';
-      var DAYS_VALID  = 30;
-      var MS_PER_DAY  = 86400000;
-      var banner      = document.getElementById('cookieBanner');
-
-      /* ── FIX 2: Detectar si estamos en la página principal ── */
-      function isHomePage() {
-        var path = window.location.pathname;
-        /* Coincide con: "/", "/index.html", o rutas tipo "/carpeta/" */
-        return (
-          path === '/' ||
-          path === '' ||
-          path.endsWith('/index.html') ||
-          path.endsWith('/index.htm')
-        );
-      }
-
-      /* Si NO es la Home → ocultar banner y salir */
-      if (!isHomePage()) {
-        if (banner) banner.style.display = 'none';
-        return;
-      }
-
-      /* ── FIX 3: Lógica de persistencia con localStorage ── */
-      function hasValidConsent() {
-        try {
-          var raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return false;
-          var data = JSON.parse(raw);
-          return (Date.now() - data.ts) < (DAYS_VALID * MS_PER_DAY);
-        } catch (e) {
-          return false; /* JSON corrupto → tratar como sin consentimiento */
-        }
-      }
-
-      function saveConsent(type) {
-        try {
-          localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify({ type: type, ts: Date.now() })
-          );
-        } catch (e) { /* localStorage bloqueado en modo privado estricto */ }
-      }
-
-      /* ── Ocultar banner: instantáneo o con animación ── */
-      function hideBanner(animate) {
-        if (!banner) return;
-        if (animate) {
-          banner.style.transition = 'transform .35s ease, opacity .35s ease';
-          banner.style.transform  = 'translateY(100%)';
-          banner.style.opacity    = '0';
-          setTimeout(function () { banner.style.display = 'none'; }, 360);
-        } else {
-          banner.style.display = 'none'; /* Sin parpadeo en visitas recurrentes */
-        }
-      }
-
-      /* ── Flujo principal (solo llega aquí si es la Home) ── */
-      if (hasValidConsent()) {
-        hideBanner(false); /* Ya aceptó → ocultar sin animación */
-        return;
-      }
-
-      /* ── FIX 4: Asignar eventos solo si los botones existen ── */
-      var btnAccept    = document.getElementById('cookieAccept');
-      var btnEssential = document.getElementById('cookieEssential');
-
-      if (btnAccept) {
-        btnAccept.addEventListener('click', function () {
-          saveConsent('all');
-          hideBanner(true);
-        });
-      }
-
-      if (btnEssential) {
-        btnEssential.addEventListener('click', function () {
-          saveConsent('essential');
-          hideBanner(true);
-        });
-      }
-
-    }); /* fin DOMContentLoaded */
-  </script>
+  // CONFIGURACIÓN DE FORMSPREE
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { 
+    formElement: '#contact-form', 
+    formId: 'mdayajel',
+    onSuccess: function() {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success-msg').style.display = 'flex';
+    }
+  });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
 
 </body>
