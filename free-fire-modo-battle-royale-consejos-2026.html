@@ -186,16 +186,19 @@
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">48</span></a></li>
             <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">32</span></a></li>
             <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">28</span></a></li>
-            <li><a href="evento-colaboracion-free-fire-2026-recompensas.html"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">19</span></a></li>
-            <li><a href="como-proteger-cuenta-free-fire-hackers-2026.html"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">14</span></a></li>
             <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">10</span></a></li>
           </ul>
         </div>
-        <div class="widget widget--cta">
+                <div class="widget widget--cta">
           <p class="cta-icon">🚀</p>
           <h2 class="widget-title">¿No quieres perder ningún código?</h2>
           <p>Activa las notificaciones y recibe los nuevos códigos de canje al instante.</p>
-          <a href="#" class="btn btn--primary btn--full">Activar notificaciones</a>
+          <button
+            id="btn-notify"
+            class="btn btn--primary btn--full"
+            onclick="activarNotificaciones()"
+          >🔔 Activar notificaciones</button>
+          <p id="notify-status" style="font-size:0.75rem;color:var(--c-text-muted);margin-top:0.5rem;min-height:1rem;text-align:center;"></p>
         </div>
       </aside>
 
@@ -223,8 +226,6 @@
         <ul>
           <li><a href="codigos-free-fire-abril-2026.html">Códigos Free Fire</a></li>
           <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="evento-colaboracion-free-fire-2026-recompensas.html">Eventos</a></li>
-          <li><a href="como-proteger-cuenta-free-fire-hackers-2026.html">Seguridad</a></li>
           <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html">Comparativas</a></li>
         </ul>
       </nav>
@@ -236,7 +237,9 @@
     </div>
   </footer>
 
+  
   <script>
+    /* ── Menú hamburguesa ──────────────────────────────── */
     (function () {
       var toggle = document.querySelector('.nav-toggle');
       var nav    = document.querySelector('.main-nav');
@@ -247,6 +250,57 @@
         nav.classList.toggle('is-open');
         toggle.classList.toggle('is-active');
       });
+    })();
+
+    /* ── Notificaciones push ───────────────────────────── */
+    function activarNotificaciones() {
+      var btn    = document.getElementById('btn-notify');
+      var status = document.getElementById('notify-status');
+
+      if (!('Notification' in window)) {
+        status.textContent = '⚠️ Tu navegador no soporta notificaciones.';
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        status.textContent = '✅ ¡Notificaciones ya activadas!';
+        btn.textContent    = '✅ Activadas';
+        btn.disabled       = true;
+        return;
+      }
+
+      if (Notification.permission === 'denied') {
+        status.textContent = '🔒 Tienes las notificaciones bloqueadas. Actívalas en Configuración del sitio.';
+        return;
+      }
+
+      /* Solicitar permiso */
+      Notification.requestPermission().then(function (permission) {
+        if (permission === 'granted') {
+          btn.textContent = '✅ Activadas';
+          btn.disabled    = true;
+          status.textContent = '✅ ¡Listo! Te avisaremos de cada código nuevo.';
+          /* Notificación de bienvenida */
+          new Notification('🎮 GamingZone', {
+            body: '¡Perfecto! Te avisaremos en cuanto haya códigos nuevos de Free Fire y Roblox.',
+            icon: 'img/favicon.png'
+          });
+        } else {
+          status.textContent = '❌ Permiso denegado. Puedes activarlo desde el icono 🔒 de la barra de dirección.';
+        }
+      });
+    }
+
+    /* Restaurar estado si ya tienen permiso */
+    (function () {
+      if (!('Notification' in window)) return;
+      var btn = document.getElementById('btn-notify');
+      if (!btn) return;
+      if (Notification.permission === 'granted') {
+        btn.textContent = '✅ Activadas';
+        btn.disabled    = true;
+        document.getElementById('notify-status').textContent = '✅ Notificaciones activas.';
+      }
     })();
   </script>
 
