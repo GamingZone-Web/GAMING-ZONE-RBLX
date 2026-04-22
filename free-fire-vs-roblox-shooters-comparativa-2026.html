@@ -20,6 +20,87 @@
   <!-- ANALYTICS: pega aquí tu script de Google Analytics -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="post.css" />
+  <style>
+  /* ===== RESPONSIVE FIX ===== */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .content-area {
+    min-width: 0;
+    flex: 1 1 640px;
+  }
+
+  .sidebar {
+    flex: 0 1 300px;
+    min-width: 0;
+  }
+
+  /* Tables scroll on small screens */
+  .comparison-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+  }
+
+  /* Images and media always fit */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  pre {
+    overflow-x: auto;
+    white-space: pre;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .main-layout {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+
+    .content-area {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+
+    .header-inner {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+  /* ========================= */
+  </style>
 </head>
 <body>
 
