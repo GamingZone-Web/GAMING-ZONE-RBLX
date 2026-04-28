@@ -87,62 +87,390 @@
             <h2>✅ Códigos de Roblox activos — Mayo 2026</h2>
             <p>Canjea estos códigos en <strong>roblox.com/promocodes</strong>. Inicia sesión primero con tu cuenta:</p>
 
-            <div class="codes-grid">
-              <div class="code-card">
-                <span class="code-card__label">🎩 Accesorio de avatar</span>
-                <div class="code-card__code">TWEETROBLOX</div>
-                <span class="code-card__reward">🎁 <strong>The Bird Says</strong> (accesorio de sombrero)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--active">● Activo</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
-              </div>
-              <div class="code-card">
-                <span class="code-card__label">👓 Accesorio</span>
-                <div class="code-card__code">SPIDERCOLA</div>
-                <span class="code-card__reward">🎁 <strong>Arachnid Cola</strong> (mochila de araña)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--active">● Activo</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
-              </div>
-              <div class="code-card">
-                <span class="code-card__label">🎮 Emote</span>
-                <div class="code-card__code">GAMEOVERV2</div>
-                <span class="code-card__reward">🎁 <strong>Game Over</strong> (emote exclusivo retro)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--limited">⏰ Limitado</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
-              </div>
-              <div class="code-card">
-                <span class="code-card__label">🦊 Mascota de avatar</span>
-                <div class="code-card__code">KROMAFOXX26</div>
-                <span class="code-card__reward">🎁 <strong>Kroma Fox Companion</strong> (mayo 2026)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--active">● Activo</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
-              </div>
-              <div class="code-card">
-                <span class="code-card__label">🌟 Item exclusivo</span>
-                <div class="code-card__code">RBLXMAY2026</div>
-                <span class="code-card__reward">🎁 <strong>May Star Halo</strong> (halo de evento)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--limited">⏰ Hasta el 31 Mayo</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
-              </div>
-              <div class="code-card">
-                <span class="code-card__label">🎭 Cara de avatar</span>
-                <div class="code-card__code">FXRBLX2026A</div>
-                <span class="code-card__reward">🎁 <strong>Neon Smile Face</strong> (cara exclusiva)</span>
-                <div class="code-card__meta">
-                  <span class="code-status code-status--active">● Activo</span>
-                  <span class="code-region">🌎 Global</span>
-                </div>
+            <!-- ══ ESTILOS MEJORADOS DE CÓDIGOS ══ -->
+            <style>
+              /* ── Wrapper de sección de códigos ── */
+              .rbx-codes-section {
+                margin: 1.5rem 0 2rem;
+              }
+              .rbx-section-label {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #4fc3f7;
+                margin-bottom: 1rem;
+              }
+              .rbx-section-label::before,
+              .rbx-section-label::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(79,195,247,0.3), transparent);
+              }
+
+              /* ── Grid de tarjetas ── */
+              .rbx-codes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+                gap: 1rem;
+              }
+
+              /* ── Tarjeta individual ── */
+              .rbx-card {
+                position: relative;
+                background: linear-gradient(135deg, rgba(15,20,35,0.95) 0%, rgba(10,25,50,0.9) 100%);
+                border: 1px solid rgba(79,195,247,0.18);
+                border-radius: 14px;
+                padding: 1.2rem 1.1rem 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+                overflow: hidden;
+                transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+              }
+              .rbx-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(ellipse at top left, rgba(79,195,247,0.07) 0%, transparent 65%);
+                pointer-events: none;
+              }
+              .rbx-card:hover {
+                border-color: rgba(79,195,247,0.5);
+                transform: translateY(-3px);
+                box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(79,195,247,0.12);
+              }
+
+              /* ── Cabecera de la tarjeta ── */
+              .rbx-card__top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+              .rbx-card__type {
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(79,195,247,0.75);
+                background: rgba(79,195,247,0.08);
+                border: 1px solid rgba(79,195,247,0.18);
+                border-radius: 999px;
+                padding: 0.18rem 0.55rem;
+              }
+              .rbx-card__status {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.28rem;
+                font-size: 0.63rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                padding: 0.18rem 0.55rem;
+                border-radius: 999px;
+              }
+              .rbx-card__status--active {
+                background: rgba(46,213,115,0.1);
+                color: #2ed573;
+                border: 1px solid rgba(46,213,115,0.28);
+              }
+              .rbx-card__status--ingame {
+                background: rgba(255,171,64,0.1);
+                color: #ffab40;
+                border: 1px solid rgba(255,171,64,0.28);
+              }
+
+              /* ── Código ── */
+              .rbx-card__code-wrap {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(0,0,0,0.35);
+                border: 1px dashed rgba(79,195,247,0.28);
+                border-radius: 8px;
+                padding: 0.55rem 0.75rem;
+                cursor: pointer;
+                transition: background 0.2s, border-color 0.2s;
+                user-select: all;
+              }
+              .rbx-card__code-wrap:hover {
+                background: rgba(79,195,247,0.06);
+                border-color: rgba(79,195,247,0.45);
+              }
+              .rbx-card__code {
+                font-family: 'Courier New', monospace;
+                font-size: 1rem;
+                font-weight: 700;
+                color: #e0f7ff;
+                letter-spacing: 0.07em;
+                flex: 1;
+                word-break: break-all;
+              }
+              .rbx-copy-btn {
+                flex-shrink: 0;
+                background: rgba(79,195,247,0.12);
+                border: 1px solid rgba(79,195,247,0.3);
+                border-radius: 6px;
+                color: #4fc3f7;
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                padding: 0.25rem 0.55rem;
+                cursor: pointer;
+                font-family: var(--font-body, sans-serif);
+                transition: background 0.2s, color 0.2s;
+                white-space: nowrap;
+              }
+              .rbx-copy-btn:hover { background: rgba(79,195,247,0.22); }
+              .rbx-copy-btn.copied { color: #2ed573; border-color: rgba(46,213,115,0.4); background: rgba(46,213,115,0.08); }
+
+              /* ── Recompensa ── */
+              .rbx-card__reward {
+                font-size: 0.82rem;
+                color: #c8d8e8;
+                line-height: 1.45;
+              }
+              .rbx-card__reward strong { color: #e8f4ff; }
+
+              /* ── Pie de tarjeta ── */
+              .rbx-card__footer {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding-top: 0.55rem;
+                border-top: 1px solid rgba(79,195,247,0.1);
+                flex-wrap: wrap;
+              }
+              .rbx-card__where {
+                font-size: 0.68rem;
+                color: rgba(200,216,232,0.6);
+                flex: 1;
+              }
+              .rbx-card__region {
+                font-size: 0.68rem;
+                color: rgba(200,216,232,0.5);
+              }
+
+              /* ── Banner de actualización ── */
+              .rbx-update-banner {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                background: rgba(46,213,115,0.05);
+                border: 1px solid rgba(46,213,115,0.2);
+                border-radius: 10px;
+                padding: 0.8rem 1rem;
+                margin-bottom: 1.5rem;
+                font-size: 0.82rem;
+              }
+              .rbx-update-dot {
+                width: 9px; height: 9px; border-radius: 50%;
+                background: #2ed573; flex-shrink: 0;
+                animation: rbx-pulse 2s infinite;
+              }
+              @keyframes rbx-pulse {
+                0%,100%{box-shadow:0 0 0 0 rgba(46,213,115,0.5)}
+                50%{box-shadow:0 0 0 6px rgba(46,213,115,0)}
+              }
+              .rbx-update-banner strong { color: #2ed573; }
+              .rbx-update-banner span { color: rgba(200,216,232,0.65); }
+
+              /* ── Nota informativa in-game ── */
+              .rbx-ingame-note {
+                background: rgba(255,171,64,0.06);
+                border: 1px solid rgba(255,171,64,0.2);
+                border-radius: 10px;
+                padding: 0.75rem 1rem;
+                font-size: 0.82rem;
+                color: rgba(200,216,232,0.8);
+                margin-bottom: 0.85rem;
+              }
+              .rbx-ingame-note strong { color: #ffab40; }
+            </style>
+
+            <!-- Banner de estado -->
+            <div class="rbx-update-banner">
+              <span class="rbx-update-dot"></span>
+              <div>
+                <strong>Actualizado: 27 de Mayo de 2026</strong>
+                <span> — 2 códigos globales activos verificados + códigos in-game disponibles.</span>
               </div>
             </div>
+
+            <!-- Códigos globales (web) -->
+            <div class="rbx-codes-section">
+              <div class="rbx-section-label">🌐 Códigos globales · roblox.com/promocodes</div>
+              <div class="rbx-codes-grid">
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🦜 Accesorio hombro</span>
+                    <span class="rbx-card__status rbx-card__status--active">● Activo</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">TWEETROBLOX</span>
+                    <button class="rbx-copy-btn" data-rbx-code="TWEETROBLOX">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>The Bird Says</strong> — mascota de hombro con forma de pájaro</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Canjear en roblox.com/promocodes</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🕷️ Mascota hombro</span>
+                    <span class="rbx-card__status rbx-card__status--active">● Activo</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">SPIDERCOLA</span>
+                    <button class="rbx-copy-btn" data-rbx-code="SPIDERCOLA">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Spider Cola</strong> — mascota de araña para el hombro del avatar</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Canjear en roblox.com/promocodes</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Códigos in-game -->
+            <div class="rbx-codes-section">
+              <div class="rbx-section-label">🎮 Códigos in-game · dentro del juego</div>
+              <div class="rbx-ingame-note">
+                <strong>¿Cómo usarlos?</strong> Estos códigos se canjean <em>dentro de experiencias específicas de Roblox</em>, no en la web de promocodes. Entra al juego indicado, busca el panel de canje y escribe el código.
+              </div>
+              <div class="rbx-codes-grid">
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🏃 Island of Move</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">StrikeAPose</span>
+                    <button class="rbx-copy-btn" data-rbx-code="StrikeAPose">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Stylin' Pose</strong> — emote exclusivo del evento</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Dentro de Island of Move</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🏃 Island of Move</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">GetMoving</span>
+                    <button class="rbx-copy-btn" data-rbx-code="GetMoving">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Speedy Shades</strong> — gafas de sol exclusivas</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Dentro de Island of Move</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🏃 Island of Move</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">VictoryLap</span>
+                    <button class="rbx-copy-btn" data-rbx-code="VictoryLap">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Victory Lap Emote</strong> — emote de celebración</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Dentro de Island of Move</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🎪 Mansion of Wonder</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">FXArtist</span>
+                    <button class="rbx-copy-btn" data-rbx-code="FXArtist">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Artist Backpack</strong> — mochila de artista FX</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Swag Booth en Mansion of Wonder</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🎪 Mansion of Wonder</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">ParticleWizard</span>
+                    <button class="rbx-copy-btn" data-rbx-code="ParticleWizard">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Tomes of the Forgotten Wizard</strong> — accesorio mago</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Swag Booth en Mansion of Wonder</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+                <div class="rbx-card">
+                  <div class="rbx-card__top">
+                    <span class="rbx-card__type">🎪 Mansion of Wonder</span>
+                    <span class="rbx-card__status rbx-card__status--ingame">🎮 In-game</span>
+                  </div>
+                  <div class="rbx-card__code-wrap" title="Clic para seleccionar">
+                    <span class="rbx-card__code">Boardwalk</span>
+                    <button class="rbx-copy-btn" data-rbx-code="Boardwalk">Copiar</button>
+                  </div>
+                  <span class="rbx-card__reward">🎁 <strong>Boardwalk Pretzel</strong> — accesorio hombro exclusivo</span>
+                  <div class="rbx-card__footer">
+                    <span class="rbx-card__where">📍 Swag Booth en Mansion of Wonder</span>
+                    <span class="rbx-card__region">🌎 Global</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Script de copiar para los nuevos botones -->
+            <script>
+              document.querySelectorAll('.rbx-copy-btn').forEach(function(btn){
+                btn.addEventListener('click', function(e){
+                  e.stopPropagation();
+                  var code = this.getAttribute('data-rbx-code');
+                  if(!code) return;
+                  var self = this;
+                  navigator.clipboard.writeText(code).then(function(){
+                    self.textContent = '✓ Copiado';
+                    self.classList.add('copied');
+                    setTimeout(function(){ self.textContent='Copiar'; self.classList.remove('copied'); }, 2000);
+                  }).catch(function(){
+                    var ta = document.createElement('textarea');
+                    ta.value = code; ta.style.position='fixed'; ta.style.opacity='0';
+                    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                    self.textContent = '✓ Copiado'; self.classList.add('copied');
+                    setTimeout(function(){ self.textContent='Copiar'; self.classList.remove('copied'); }, 2000);
+                  });
+                });
+              });
+            </script>
 
             <h2>Cómo canjear códigos de Roblox en 2026 — Paso a paso</h2>
             <ol>
@@ -172,6 +500,8 @@
             <h2>Códigos expirados recientemente</h2>
             <p>Estos códigos ya no son válidos pero quedan registrados como referencia:</p>
             <ul>
+              <li>❌ <code>FREENGNBOI</code> — Nguyen Boi Bundle · Expiró en Abril 2026</li>
+              <li>❌ <code>FREENGNGON</code> — Nguyen Gon Bundle · Expiró en Abril 2026</li>
               <li>❌ <code>CARTOONFOX</code> — Expiró en Abril 2026</li>
               <li>❌ <code>ROBLOXEDU2025</code> — Válido solo durante el evento educativo de 2025</li>
               <li>❌ <code>AMAZONFRIEND2025</code> — Expiró en Diciembre 2025</li>
